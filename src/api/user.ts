@@ -17,3 +17,8 @@ export function register(data) {
         showLoading: true
     })
 }
+export function getUserInfo() {
+    return Axios.get({
+        url:'/users'
+    })
+}
