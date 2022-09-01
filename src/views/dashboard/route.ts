@@ -8,16 +8,13 @@ export default {
     meta: {
         title: "工作台",
         icon: 'Monitor',
-        sort:1
+        sort: 1
     },
     children: [
         {
-            name: 'dashboard',
+
             path: 'dashboard',
             component: () => import('./index.vue'),
-            meta: {
-                title: '工作台',
-            },
         },
     ],
 }

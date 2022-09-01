@@ -82,6 +82,7 @@ async function handleLogin(payload) {
       const {data, message} = res
       lStorage.setCache('token', data.token)
       ElMessage.success('登录成功')
+      router.push('/')
     } else {
       ElMessage.error(res.message || '登录异常')
     }

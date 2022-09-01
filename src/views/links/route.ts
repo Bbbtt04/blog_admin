@@ -15,7 +15,6 @@ export default {
             path: '/links',
             component: () => import('./index.vue'),
             meta: {
-                title: '友联管理',
             },
         },
     ],

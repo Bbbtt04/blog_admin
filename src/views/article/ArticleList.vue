@@ -1,10 +1,10 @@
 <template>
   <div class="content">
     <div class="content-tool">
-      <el-button color="#585153">新建文章</el-button>
+      <el-button color="#585153" @click="addArticle">新建文章</el-button>
     </div>
     <div class="content-table">
-      <el-table :data="Datalist" fit  stripe style="width: 100%;">
+      <el-table :data="Datalist" fit  stripe style="width: 100%;" :row-style="rowStyle">
         <el-table-column label="标题" prop="title" width="200"/>
         <el-table-column label="分类" prop="categoryId" width="120"/>
         <el-table-column label="标签" prop="tagsId" width="120"/>
@@ -33,6 +33,7 @@
 <script lang='ts' setup>
 import {onMounted, ref} from "vue";
 import {getMainList} from "@/api/article";
+import {router} from "@/router";
 
 let Datalist = ref();
 
@@ -41,6 +42,12 @@ onMounted(() => {
     Datalist.value = data.data
   })
 })
+function rowStyle () {
+  return `height: 65px`
+}
+function addArticle() {
+  router.push({name:'add'})
+}
 </script>
 
 <style lang='scss' scoped>

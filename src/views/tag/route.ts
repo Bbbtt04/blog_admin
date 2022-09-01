@@ -6,7 +6,7 @@ export default {
     component: Layout,
     meta: {
         title: "标签管理",
-        sort: 6,
+        sort: 4,
         icon: 'Notification'
     },
     children: [
@@ -15,7 +15,6 @@ export default {
             path: '/tags',
             component: () => import('./index.vue'),
             meta: {
-                title: '标签管理',
             },
         },
     ],

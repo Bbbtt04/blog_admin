@@ -9,8 +9,7 @@ export function createPermissionGuard(router) {
     const userStore = useUserStore()
     const permissionStore = usePermissionStore()
     router.beforeEach(async (to) => {
-        const token = userStore.getToken
-
+        const token = localStorage.getItem('token')
         // 没用token
         if (!token) {
             if (WHITE_LIST.includes(to.path)) return true

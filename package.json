@@ -11,6 +11,8 @@
   "dependencies": {
     "@element-plus/icons": "^0.0.11",
     "@element-plus/icons-vue": "^2.0.9",
+    "@wangeditor/editor": "^5.1.15",
+    "@wangeditor/editor-for-vue": "^5.1.12",
     "axios": "^0.27.2",
     "element-plus": "^2.2.13",
     "lodash-es": "^4.17.21",

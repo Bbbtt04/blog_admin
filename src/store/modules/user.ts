@@ -1,7 +1,7 @@
 import {defineStore} from "pinia";
 import {getUserInfo, login, register} from "@/api/user";
-import Cache from "@/utils/cache";
-import {toLogin} from "@/utils";
+import lStorage from "@/utils/cache";
+import {router} from "@/router";
 
 
 interface UserInfo {
@@ -47,9 +47,9 @@ export const useUserStore = defineStore('user', {
             })
         },
         logout() {
-            Cache.deleteCache('token')
+            lStorage.deleteCache('token')
             this.userInfo = {}
-            toLogin()
+            router.push({name:'login'})
         }
     }
 })

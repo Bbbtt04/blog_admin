@@ -44,6 +44,7 @@ const appStore = useAppStore();
   }
 }
 .main{
+  padding: 30px;
   width: 100%;
   height: 100%;
 }
