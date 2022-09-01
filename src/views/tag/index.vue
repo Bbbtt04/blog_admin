@@ -1,5 +1,5 @@
 <template>
-  <h1>list</h1>
+<h1>标签管理</h1>
 </template>
 
 <script setup lang='ts'>

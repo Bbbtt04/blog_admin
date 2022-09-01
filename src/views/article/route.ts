@@ -5,12 +5,13 @@ export default {
     path: '/content',
     component: Layout,
     meta: {
-        icon: 'House',
-        title: '文章管理'
+        icon: 'Document',
+        title: '文章管理',
+        sort:2
     },
     children: [
         {
-            name: 'list', path: '/content/list', component: () => import('./AriticleList.vue'),
+            name: 'list', path: '/content/list', component: () => import('./ArticleList.vue'),
             meta: {
                 title: '文章列表'
             }

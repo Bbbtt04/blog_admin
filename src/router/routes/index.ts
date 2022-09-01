@@ -15,6 +15,7 @@ const basicRoutes = [
         meta: {title: '注册页'},
         isHidden: true,
     },
+
 ]
 
 export const NOT_FOUND_ROUTE = {

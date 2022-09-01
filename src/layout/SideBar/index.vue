@@ -7,8 +7,9 @@
 import SiderBarTitle from "./components/SiderBarTitle.vue";
 import SiderBarMenu from './components/SiderBarMenu.vue';
 import {usePermissionStore} from "@/store/modules/permission";
+import {useUserStore} from "@/store/modules/user";
 
+const userStore = useUserStore()
 const permissionStore = usePermissionStore()
-permissionStore.generateRoutes(['admin'])
-console.log(permissionStore.menuList)
+permissionStore.generateRoutes([userStore.role])
 </script>

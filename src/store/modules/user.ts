@@ -1,5 +1,5 @@
 import {defineStore} from "pinia";
-import {login, register} from "@/api/user";
+import {getUserInfo, login, register} from "@/api/user";
 import Cache from "@/utils/cache";
 import {toLogin} from "@/utils";
 
@@ -13,7 +13,7 @@ interface UserInfo {
 
 export const useUserStore = defineStore('user', {
     state() {
-        let UserInfo: UserInfo;
+        let UserInfo;
         return {
             token: localStorage.getItem('token'),
             userInfo: UserInfo
@@ -41,7 +41,10 @@ export const useUserStore = defineStore('user', {
             return res
         },
         async getUserInfo() {
-            return 'get'
+            await getUserInfo().then(data => {
+                // @ts-ignore
+                this.userInfo = data.data
+            })
         },
         logout() {
             Cache.deleteCache('token')

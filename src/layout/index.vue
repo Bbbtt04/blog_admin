@@ -8,7 +8,9 @@
         <el-header>
           <Header/>
         </el-header>
-        <router-view></router-view>
+        <div class="main">
+          <router-view></router-view>
+        </div>
       </el-container>
     </el-container>
   </div>
@@ -40,5 +42,9 @@ const appStore = useAppStore();
       display: flex;
     }
   }
+}
+.main{
+  width: 100%;
+  height: 100%;
 }
 </style>

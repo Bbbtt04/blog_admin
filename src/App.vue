@@ -14,4 +14,5 @@ import '@/styles/variables.module.scss'</script>
 body {
   background-color: #f5f7f9;
 }
+
 </style>

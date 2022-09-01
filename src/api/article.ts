@@ -1,9 +1,9 @@
 import Axios from "@/utils/request";
 
 export function getMainList() {
-    return Axios.get({
+    return Axios.request({
         url:'contents',
-        method:'get'
+        method:'Get'
     })
 }
 export function createArticle(data){

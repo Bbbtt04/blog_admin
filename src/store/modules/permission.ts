@@ -48,6 +48,7 @@ export const usePermissionStore = defineStore('premission', {
     actions: {
         generateRoutes(role: Array<string> = []) {
             const accessRoutes = filterAsyncRoutes(asyncRoutes,role)
+            accessRoutes.sort((a,b) => a.meta.sort - b.meta.sort)
             this.accessRoutes = accessRoutes
             return accessRoutes
         }
