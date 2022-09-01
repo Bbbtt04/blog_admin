@@ -6,7 +6,7 @@ export default {
     component: Layout,
     meta: {
         title: "标签管理",
-        sort: 6,
+        sort: 4,
         icon: 'Notification'
     },
     children: [

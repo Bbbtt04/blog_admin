@@ -12,6 +12,7 @@ import '@/styles/variables.module.scss'</script>
 }
 
 body {
+  overflow: hidden;
   background-color: #f5f7f9;
 }
 
