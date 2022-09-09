@@ -59,8 +59,7 @@ onMounted(() => {
 
 function getTCategoryList() {
   getCategory().then(data => {
-    items.value = data.data
-
+    items.value = data.data.list
   })
 }
 

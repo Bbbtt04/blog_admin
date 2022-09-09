@@ -15,7 +15,6 @@ export default {
             path: '/category',
             component: () => import('./index.vue'),
             meta: {
-                title: '标签管理',
             },
         },
     ],

@@ -1,8 +1,8 @@
 import Axios from "@/utils/request";
 
-export function getMainList() {
+export function getMainList(page) {
     return Axios.request({
-        url:'contents',
+        url:`contents?page=${page}`,
         method:'Get'
     })
 }
@@ -10,7 +10,8 @@ export function createArticle(data){
     return Axios.request({
         url:'/contents',
         method:'Post',
-        showLoading:true
+        showLoading:true,
+        data
     })
 }
 export function getList(){
@@ -27,11 +28,12 @@ export function getContent(id) {
         showLoading:true
     })
 }
-export function editContent(id) {
+export function editContent(id,data) {
     return Axios.request({
         url:`/contents/${id}`,
         method:'Patch',
-        showLoading:true
+        showLoading:true,
+        data
     })
 }
 export function removeContent(id) {

@@ -6,6 +6,11 @@
           <p>{{ props.title }}</p>
         </div>
       </template>
+      <div class="content">
+        <div class="total">{{ total ? total : 'null' }}</div>
+        <div class="icon">
+        </div>
+      </div>
     </el-card>
   </el-col>
 </template>
@@ -14,8 +19,8 @@
 import {defineProps} from "vue";
 
 const props = defineProps({
-  title:String,
-  total:Number
+  title: String,
+  total: Number
 })
 </script>
 
@@ -26,6 +31,23 @@ const props = defineProps({
 
 .item {
   height: 200px;
+
+  .content {
+    padding: 30px 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .total {
+      font-size: 1.875rem;
+      line-height: 2.25rem;
+    }
+
+    .icon {
+      height: 1em;
+      width: 1em;
+    }
+  }
 }
 
 .card-header {

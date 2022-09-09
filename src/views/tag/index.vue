@@ -59,8 +59,7 @@ onMounted(() => {
 
 function getTagsList() {
   getTags().then(data => {
-    items.value = data.data
-
+    items.value = data.data.list
   })
 }
 
@@ -90,7 +89,7 @@ const resetForm = () => {
 
 function handleRemoveTag(id) {
   removeTag(id).then((data) => {
-    if(data.success === true) {
+    if (data.success === true) {
       if (data.success === true) {
         ElMessage.success('删除成功!')
       }

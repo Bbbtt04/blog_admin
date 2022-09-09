@@ -30,3 +30,10 @@ export function removeTag(id) {
         showLoading:true,
     })
 }
+export function getRelation() {
+    return Axios.request({
+        url:'/tags/relation',
+        method:'Get',
+        showLoading:true
+    })
+}

@@ -1,32 +1,17 @@
 <template>
   <div class="index">
     <div class="index-card">
-      <el-form
-          ref="FormRef"
-          :loading="isloading"
-          :model="loginData"
-          :rules="rules"
-          label-position="left"
-          label-width="4vw"
-          size="large"
-      >
+      <el-form ref="FormRef" :loading="isloading" :model="loginData" :rules="rules" label-position="left"
+        label-width="4vw" size="large">
         <div class="title">LOGIN</div>
         <div class="content">
           <el-form-item class="username" prop="username">
-            <el-input v-model="loginData.username" :prefix-icon="`User`"
-                      placeholder="请输入用户名"></el-input>
+            <el-input v-model="loginData.username" :prefix-icon="`User`" placeholder="请输入用户名"></el-input>
           </el-form-item>
           <el-form-item class="password" prop="password">
-            <el-input
-                v-model="loginData.password"
-                :prefix-icon="`Lock`"
-                placeholder="请输入密码"
-                show-password
-            ></el-input>
+            <el-input v-model="loginData.password" :prefix-icon="`Lock`" placeholder="请输入密码" show-password></el-input>
           </el-form-item>
-          <el-button
-              :loading="isloading" auto-insert-space class="loginBtn"
-              @click='handleSubmit(FormRef)'>
+          <el-button :loading="isloading" auto-insert-space class="loginBtn" @click='handleSubmit(FormRef)'>
             登录
           </el-button>
         </div>

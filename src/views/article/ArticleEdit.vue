@@ -4,17 +4,18 @@
       <el-input v-model="formInline.title" placeholder="请输入文章标题"/>
     </el-form-item>
     <el-form-item label="标签">
-      <el-select v-model="formInline.tagsId" placeholder="请选择文章标签">
-        <el-option v-for="item in categories" :label="item.name" :value="item.id"></el-option>
+      <el-select v-model="formInline.tagsId" placeholder="请选择文章标签" multiple>
+        <el-option v-for="item in tagsList" :label="item.name" :value="item.id"></el-option>
       </el-select>
+
     </el-form-item>
     <el-form-item label="分类">
       <el-select v-model="formInline.categoryId" placeholder="请选择文章分类">
-        <el-option v-for="item in tags" :label="item.name" :value="item.id"/>
+        <el-option v-for="item in categoriesList" :label="item.name" :value="item.id"/>
       </el-select>
     </el-form-item>
     <el-form-item label="文章描述">
-      <el-input v-model="formInline.description" type="textarea" placeholder="请选择文章描述"/>
+      <el-input v-model="formInline.description" placeholder="请选择文章描述" type="textarea"/>
     </el-form-item>
     <el-form-item>
       <el-button type="success" @click="onSubmit">发布</el-button>
@@ -44,15 +45,32 @@ import {onBeforeUnmount, onMounted, reactive, ref, shallowRef} from 'vue'
 import {Editor, Toolbar} from '@wangeditor/editor-for-vue'
 import {getTags} from "@/api/tags";
 import {getCategory} from "@/api/categories";
-import {createArticle} from "@/api/article";
+import {createArticle, getContent} from "@/api/article";
+import {useRoute} from 'vue-router'
 
 let editor = ref(null)
-let tags = ref()
-let categories = ref()
+let tagsList = ref()
+let categoriesList = ref()
+
+const route = useRoute()
+const { id } = route.query
 
 onMounted(() => {
-  getTags().then(data => tags.value = data.data)
-  getCategory().then(data => categories.value = data.data)
+  getTags().then(data => {
+    tagsList.value = data.data.list
+  })
+  getCategory().then(data => {
+    categoriesList.value = data.data.list
+  })
+  if(id) {
+    getContent(id).then(data => {
+      let res = data.data
+      console.log(res)
+      valueHtml.value = res.content
+      formInline.title = res.title
+      formInline.description = res.description
+    })
+  }
 })
 const formInline = reactive({
   title: "",
