@@ -8,16 +8,8 @@
             <el-button class="button" text @click="getTagsList">获取最新列表</el-button>
           </div>
         </template>
-        <el-tag
-            v-for="item in items"
-            :key="item.name"
-            class="item"
-            closable
-            effect="light"
-            hit
-            size="large"
-            @close="handleRemoveTag(item.id)"
-        >
+        <el-tag v-for="item in items" :key="item.name" class="item" closable effect="light" hit size="large"
+          @close="handleRemoveTag(item.id)">
           {{ item.name }}
         </el-tag>
       </el-card>
@@ -27,14 +19,9 @@
         <template #header>
           <h1>管理标签</h1>
         </template>
-        <el-form
-            label-width="80px"
-        >
-          <el-form-item
-              label="标签名称"
-              prop="email"
-          >
-            <el-input v-model="FormData.name"/>
+        <el-form label-width="80px">
+          <el-form-item label="标签名称" prop="email">
+            <el-input v-model="FormData.name" />
           </el-form-item>
           <el-form-item>
             <el-button type="primary" @click="submitForm()">创建标签</el-button>
@@ -47,10 +34,10 @@
 </template>
 
 <script lang='ts' setup>
-import {onMounted, reactive, ref} from "vue";
-import {createTag, getTags, removeTag} from "@/api/tags";
-import type {FormInstance} from 'element-plus'
-import {ElMessage} from 'element-plus'
+import { onMounted, reactive, ref } from "vue";
+import { createTag, getTags, removeTag } from "@/api/tags";
+import type { FormInstance } from 'element-plus'
+import { ElMessage } from 'element-plus'
 
 let items = ref()
 onMounted(() => {

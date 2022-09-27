@@ -65,10 +65,17 @@ class commonRequest {
                 this.loading?.close()
 
                 const data = res.data
-                if (data.success === '-1001') {
-                    console.log('请求失败~, 错误信息')
+                console.log(data);
+
+                // if (data.success === '-1001') {
+                //     console.log('请求失败~, 错误信息')
+                // } else {
+                //     return data
+                // }
+                if(data?.status === 0) {
+                    return data.data ? data.data : data
                 } else {
-                    return data
+
                 }
             },
             (err) => {

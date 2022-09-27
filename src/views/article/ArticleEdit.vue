@@ -1,56 +1,41 @@
 <template>
   <el-form :inline="true" :model="formInline" class="demo-form-inline">
     <el-form-item label="文章标题">
-      <el-input v-model="formInline.title" placeholder="请输入文章标题"/>
+      <el-input v-model="formInline.title" placeholder="请输入文章标题" />
     </el-form-item>
     <el-form-item label="标签">
       <el-select v-model="formInline.tagsId" placeholder="请选择文章标签" multiple>
         <el-option v-for="item in tagsList" :label="item.name" :value="item.id"></el-option>
       </el-select>
-
     </el-form-item>
     <el-form-item label="分类">
       <el-select v-model="formInline.categoryId" placeholder="请选择文章分类">
-        <el-option v-for="item in categoriesList" :label="item.name" :value="item.id"/>
+        <el-option v-for="item in categoriesList" :label="item.name" :value="item.id" />
       </el-select>
     </el-form-item>
     <el-form-item label="文章描述">
-      <el-input v-model="formInline.description" placeholder="请选择文章描述" type="textarea"/>
+      <el-input v-model="formInline.description" placeholder="请选择文章描述" type="textarea" />
     </el-form-item>
     <el-form-item>
-      <el-button type="success" @click="onSubmit">发布</el-button>
+      <el-button type="success" @click="onSubmit" v-if="!id">发布</el-button>
+      <el-button type="warning" @click="onSubmit" v-if="id">更新</el-button>
     </el-form-item>
   </el-form>
-
-  <div style="border: 1px solid #ccc">
-    <Toolbar
-        :defaultConfig="toolbarConfig"
-        :editor="editorRef"
-        style="border-bottom: 1px solid #ccc"
-    />
-    <Editor
-        ref="editor"
-        v-model="valueHtml"
-        :defaultConfig="editorConfig"
-        style="height: 500px; overflow-y: hidden;"
-        @onCreated="handleCreated"
-    />
-  </div>
+  <v-md-editor v-model="text" height="700px"></v-md-editor>
 </template>
 
 
-<script lang="ts" setup>
-import '@wangeditor/editor/dist/css/style.css' // 引入 css
-import {onBeforeUnmount, onMounted, reactive, ref, shallowRef} from 'vue'
-import {Editor, Toolbar} from '@wangeditor/editor-for-vue'
-import {getTags} from "@/api/tags";
-import {getCategory} from "@/api/categories";
-import {createArticle, getContent} from "@/api/article";
-import {useRoute} from 'vue-router'
+<script setup>
+import { onBeforeUnmount, onMounted, reactive, ref, shallowRef } from 'vue'
+import { getTags } from "@/api/tags";
+import { getCategory } from "@/api/categories";
+import { createArticle, getContent, editContent } from "@/api/article";
+import { useRoute } from 'vue-router'
+import { ElMessage } from 'element-plus';
 
-let editor = ref(null)
 let tagsList = ref()
 let categoriesList = ref()
+let text = ref('hello')
 
 const route = useRoute()
 const { id } = route.query
@@ -62,11 +47,10 @@ onMounted(() => {
   getCategory().then(data => {
     categoriesList.value = data.data.list
   })
-  if(id) {
+  if (id) {
     getContent(id).then(data => {
       let res = data.data
-      console.log(res)
-      valueHtml.value = res.content
+      text.value = res.content
       formInline.title = res.title
       formInline.description = res.description
     })
@@ -81,34 +65,26 @@ const formInline = reactive({
 })
 
 const onSubmit = () => {
-  formInline.content = valueHtml.value
-  console.log(formInline)
-  createArticle(formInline).then(data => {
-    console.log(data)
-  }).catch(err => {
-    console.log(err)
-  })
-}
+  if (!text.value || !formInline.description || !formInline.title) {
+    ElMessage.error('必填的不能为空哦 !')
+  }
 
-//editor
-// 编辑器实例，必须用 shallowRef
-const editorRef = shallowRef()
-
-// 内容 HTML
-const valueHtml = ref('<p>hello</p>')
-
-const toolbarConfig = {}
-const editorConfig = {placeholder: '请输入内容...'}
-
-// 组件销毁时，也及时销毁编辑器
-onBeforeUnmount(() => {
-  const editor = editorRef.value
-  if (editor == null) return
-  editor.destroy()
-})
-
-const handleCreated = (editor) => {
-  editorRef.value = editor // 记录 editor 实例，重要！
+  formInline.content = text.value
+  if (!id) {
+    createArticle(formInline).then(data => {
+      if (data.message == 'success') {
+        ElMessage.success('发布 !')
+      }
+    }).catch(err => {
+      console.log(err)
+    })
+  } else {
+    editContent(id, formInline).then(data => {
+      if (data.message == 'success') {
+        ElMessage.success('更新成功 !')
+      }
+    })
+  }
 }
 </script>
 

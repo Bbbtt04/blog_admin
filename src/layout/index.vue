@@ -2,11 +2,11 @@
   <div class="common-layout">
     <el-container>
       <el-aside :width="appStore.collapse ? '60px' : '210px'">
-        <SideBar/>
+        <SideBar />
       </el-aside>
       <el-container>
         <el-header>
-          <Header/>
+          <Header />
         </el-header>
         <div class="main">
           <router-view></router-view>
@@ -19,7 +19,7 @@
 <script lang="ts" setup>
 import SideBar from "./SideBar/index.vue";
 import Header from './Header/index.vue'
-import {useAppStore} from "@/store/modules/app";
+import { useAppStore } from "@/store/modules/app";
 const appStore = useAppStore();
 </script>
 
@@ -43,7 +43,8 @@ const appStore = useAppStore();
     }
   }
 }
-.main{
+
+.main {
   padding: 30px;
   width: 100%;
   height: 100%;

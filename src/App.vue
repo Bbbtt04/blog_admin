@@ -4,7 +4,8 @@
 
 <script lang="ts" setup>
 import AppProvider from '@/components/common/AppProvider.vue'
-import '@/styles/variables.module.scss'</script>
+import '@/styles/variables.module.scss'
+</script>
 <style lang="scss">
 #nprogress .bar {
   background: #ff81c3 !important;
@@ -12,7 +13,7 @@ import '@/styles/variables.module.scss'</script>
 }
 
 body {
-  overflow: hidden;
+  overflow-x: hidden;
   background-color: #f5f7f9;
 }
 </style>

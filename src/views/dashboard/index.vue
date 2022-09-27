@@ -14,19 +14,18 @@
       </el-card>
     </el-col>
     <el-col :span="14">
-      <el-card class="relation" style="margin-left: 30px">
-      </el-card>
+      <el-empty description="功能待添加😄" class="relation" />
     </el-col>
   </el-row>
 </template>
 
 <script lang="ts" setup>
-import {onMounted, ref} from 'vue'
+import { onMounted, ref } from 'vue'
 import DataCard from './components/DataCard.vue'
 import Pie from "@/components/echarts/pie.vue"
-import {getMainList} from "@/api/article";
-import {getTags} from "@/api/tags";
-import {getCategory} from "@/api/categories";
+import { getMainList } from "@/api/article";
+import { getTags } from "@/api/tags";
+import { getCategory } from "@/api/categories";
 
 let articleCon = ref()
 let tagsCon = ref()

@@ -7,7 +7,8 @@ export default {
     meta: {
         icon: 'Document',
         title: '文章管理',
-        sort:2
+        sort:2,
+        isKeepAliveNot: true
     },
     children: [
         {
